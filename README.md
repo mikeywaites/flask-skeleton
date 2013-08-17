@@ -39,4 +39,3 @@ Variables
 =========
 
 PROJECT_NAME = used to renmae the main directory containing our app.  This will form our python package import name later. **see setup.py**
-========
