@@ -6,7 +6,7 @@ from flask_environments import Environments
 
 app = Flask(__name__)
 env = Environments(app)
-app.config.from_object('{{ PACKAGE }}.config')
+app.config.from_object('{{ PROJECT_NAME }}.config')
 
 db = SQLAlchemy(app)
 
@@ -15,5 +15,5 @@ db = SQLAlchemy(app)
 def not_found(error):
     return render_template('404.html'), 404
 
-from {{ PACKAGE }}.views import mod as example_mod
+from {{ PROJECT_NAME }}.views import mod as example_mod
 app.register_blueprint(example_mod)
