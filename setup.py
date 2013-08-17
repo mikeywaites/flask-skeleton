@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(
-    name="{{ PACKAGE }}",
+    name="{{ PROJECT_NAME }}",
     version="1.0.0",
     author='Mike Waites',
     author_email='mikey.waites@gmail.com',

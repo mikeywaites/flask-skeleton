@@ -1,4 +1,4 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from {{ PACKAGE }} import app
+from {{ PROJECT_NAME }} import app
 app.run()
