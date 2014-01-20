@@ -8,17 +8,17 @@ from flask.ext.script import Manager
 
 from {{PROJECT_NAME}} import create_app
 
-manager.add_option('-c', '--config', dest='config', required=False)
 
 app = create_app()
 
-manager = Manager(app)
+manager = Manager(create_app)
+manager.add_option('-e', '--environment', dest='evironment', required=False)
 
 
 @manager.command
 def dbshell():
-    url = urlparse.urlparse(app.config['SQLALCHEMY_DATABASE_URI'])
 
+    url = urlparse.urlparse(app.config['SQLALCHEMY_DATABASE_URI'])
     params = {
         'db_name': url.path.strip('/'),
         'user': url.username,
