@@ -12,7 +12,7 @@ from {{PROJECT_NAME}} import create_app
 app = create_app()
 
 manager = Manager(create_app)
-manager.add_option('-e', '--environment', dest='evironment', required=False)
+manager.add_option('-e', '--environment', dest='environment', required=False)
 
 
 @manager.command
