@@ -42,8 +42,8 @@ and thats it.  You'll notice our folders have been renamed and all our package i
 Variables
 =========
 
-PROJECT_NAME = used to renmae the main directory containing our app.  This will form our python package import name later. **see setup.py**
-DOCKER_USER = used when creating fugu scripts for managing docker. [here](https://github.com/mattes/fugu)
+- PROJECT_NAME = used to renmae the main directory containing our app.  This will form our python package import name later. **see setup.py**
+- DOCKER_USER = used when creating fugu scripts for managing docker. [here](https://github.com/mattes/fugu)
 
 
 Installing docker & fugu
