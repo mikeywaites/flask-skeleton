@@ -22,4 +22,4 @@ app:
   <<: *dev
   name: {{PROJECT_NAME}}.app
   publish:
-    - 9000:9000
+    - 5000:5000
