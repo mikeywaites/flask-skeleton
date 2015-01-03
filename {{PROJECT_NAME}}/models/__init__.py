@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from flask_sqlalchemy import SQLAlchemy
-from {{PROJECT_NAME}}.utils import utc_now
 
 db = SQLAlchemy()
+db.session = db.create_scoped_session({'autoflush': False})
+
+
+from . auth import User  # NOQA

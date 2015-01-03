@@ -5,14 +5,16 @@ import urlparse
 import subprocess
 
 from flask.ext.script import Manager
+from flask.ext.migrate import Migrate, MigrateCommand
 
-from {{PROJECT_NAME}} import create_app
-
+from {{PROJECT_NAME}}.app import create_app
+from {{PROJECT_NAME}}.models import db
 
 app = create_app()
+migrate = Migrate(app, db)
 
-manager = Manager(create_app)
-manager.add_option('-e', '--environment', dest='environment', required=False)
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
 
 @manager.command
