@@ -1,24 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from os import path
-
-"""
-    {{ PROJECT_NAME }} configuration objects.
-
-    Define custom config objects here or update existing ones.  Configuration objects
-    will be picked up by either defining a FLASK_ENV eviornment variable or by explicitly
-    passing the upper case class name to the application factory.
-
-    Useage::
-
-        class MyConfig(config):
-
-            S3_URL = "https://s3.amazon.com/foo/bar
-
-        >>> from {{ PROJECT_NAME }} import create_app
-        >>> create_app(environment="MYCONFIG")
-"""
+from os import path, environ
 
 
 class Config(object):
@@ -31,23 +14,34 @@ class Config(object):
     TEMPLATE_FOLDER = path.join(PROJECT_ROOT, 'templates')
 
 
-class Development(Config):
+def build_db_url(user=None, password=None, addr=None, name=None):
+    tmpl = "postgresql://{DB_USER}:{DB_PASS}@{DB_ADDR}/{DB_NAME}"
+    return tmpl.format(DB_USER=user or 'postgres',
+                       DB_PASS=password or 'root',
+                       DB_ADDR=addr or 'localhost',
+                       DB_NAME='{{PROJECT_NAME}}')
+
+
+class DEV(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "postgresql://{{ DB_USER }}:{{ DB_PASS }}@localhost/{{ DB_NAME }}"
     SECRET_KEY = "c1893e25-88ec-4ec2-b2fe-4c213413df25"
+    SQLALCHEMY_DATABASE_URI = \
+        build_db_url(addr=environ.get('DB_PORT_5432_TCP_ADDR'))
 
 
-class Stage(Config):
+class STAGE(Config):
     DEBUG = True
 
 
-class Production(Config):
+class LIVE(Config):
     SQLALCHEMY_ECHO = False
     DEBUG = True
 
 
-class Testing(Config):
+class TEST(Config):
     SECRET_KEY = "2147d2df-759b-40ac-8013-f6154110a7d0"
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "postgresql://{{ DB_USER }}:{{ DB_PASS }}@localhost/{{DB_NAME}}_test"
     SQLALCHEMY_ECHO = False
+    SQLALCHEMY_DATABASE_URI = \
+        build_db_url(name='{{PROJECT_NAME}}_test',
+                     addr=environ.get('DB_PORT_5432_TCP_ADDR'))
