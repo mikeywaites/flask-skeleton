@@ -14,6 +14,6 @@ RUN python setup.py develop
 
 VOLUME ["/opt/code"]
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["python", "/opt/code/{{PROJECT_NAME}}/run.py"]
