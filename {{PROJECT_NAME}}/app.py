@@ -3,7 +3,7 @@
 
 from os import environ
 
-from flask import Flask
+from flask import Flask, url_for, redirect
 
 from {{PROJECT_NAME}}.api.views import api_mod
 
@@ -34,7 +34,13 @@ def create_app(config_name='DEV'):
     if config_name is not None:
         environ['{{PROJECT_NAME}}_CONFIG'] = config_name
 
+    app.config.from_object('{{PROJECT_NAME}}.config.settings')
     app.template_folder = app.config.get('TEMPLATE_FOLDER', 'templates')
     app.register_blueprint(api_mod, url_prefix='/v1')
+
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def catch_all(path):
+        return redirect(url_for('api.home'))
 
     return app
