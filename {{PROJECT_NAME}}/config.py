@@ -19,7 +19,7 @@ def build_db_url(user=None, password=None, addr=None, name=None):
     return tmpl.format(DB_USER=user or 'postgres',
                        DB_PASS=password or 'root',
                        DB_ADDR=addr or 'localhost',
-                       DB_NAME='{{PROJECT_NAME}}')
+                       DB_NAME='postgres')
 
 
 class DEV(Config):
@@ -43,5 +43,8 @@ class TEST(Config):
     TESTING = True
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_DATABASE_URI = \
-        build_db_url(name='{{PROJECT_NAME}}_test',
+        build_db_url(name='postgres_test',
                      addr=environ.get('DB_PORT_5432_TCP_ADDR'))
+
+
+settings = globals()[environ.get('FASTER_CONFIG', 'DEV')]
