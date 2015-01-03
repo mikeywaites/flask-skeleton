@@ -4,6 +4,9 @@ flask-skeleton
 A simple re-usable application skeleton.  This skeleton is for us with the fantastic app scoffolding library from @krak3n, ``facio``.
 To use this skeleton head over to the ``facio`` docs [here](https://facio.readthedocs.org/en/latest/index.html)
 
+
+** Please feel free to get in touch regarding any changes or improvements you might have to this template.  Its something that its evolving over time **
+
 Quickstart
 ==========
 
@@ -75,7 +78,7 @@ This should start our app container in interactive mode with the familiar sight 
 
 `$ boot2docker ip` and open this in your browser on port 5000:
 
-`http://192.168.59.103:5000/`
+`http://192.168.59.103:5000/` ( this ip may vary for you )
 
 
 You should now see a very basic json example being outputted from the uri /v1/
