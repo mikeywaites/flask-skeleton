@@ -28,11 +28,10 @@ autogenerate will find any changes you have made for you.
 
 """
 
-from {{ PROJECT_NAME }} import create_app, db
+from {{ PROJECT_NAME }}.app import create_app
+from {{PROJECT_NAME}}.models import db
 
-FLASK_ENV = config.get_section(config.config_ini_section).get('flask_env', 'DEVELOPMENT')
-
-app = create_app(default_env=FLASK_ENV)
+app = create_app()
 
 target_metadata = db.metadata
 
