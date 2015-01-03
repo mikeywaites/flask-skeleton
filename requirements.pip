@@ -7,6 +7,4 @@ arrow==0.4.4
 alembic==0.7.1
 pytest==2.6.4
 pytest-cov==1.8.1
-sphinx==1.2.3
-sphinxcontrib-httpdomain==1.3.0
-sphinx_bootstrap_theme==0.4.5
+passlib==1.6.2
